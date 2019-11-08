@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 983px;
+            height: 1203px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Winter_1.js"></script>
+        <script src="data/Summer_2.js"></script>
+        <script src="data/Spring_3.js"></script>
+        <script src="data/SpermWhaleSeasonalPresenceFall_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+            map.setMaxBounds(map.getBounds());
+        }
+        var layer_ESRIOceanBaseMap_0 = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_ESRIOceanBaseMap_0;
+        map.addLayer(layer_ESRIOceanBaseMap_0);
+        function pop_Winter_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Field1'] !== null ? Autolinker.link(String(feature.properties['Field1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? Autolinker.link(String(feature.properties['latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? Autolinker.link(String(feature.properties['longitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['obs_date'] !== null ? Autolinker.link(String(feature.properties['obs_date'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['months'] !== null ? Autolinker.link(String(feature.properties['months'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['years'] !== null ? Autolinker.link(String(feature.properties['years'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dates'] !== null ? Autolinker.link(String(feature.properties['Dates'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['seasons'] !== null ? Autolinker.link(String(feature.properties['seasons'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['X'] !== null ? Autolinker.link(String(feature.properties['X'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Y'] !== null ? Autolinker.link(String(feature.properties['Y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['optional'] !== null ? Autolinker.link(String(feature.properties['optional'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Winter_1_0() {
+            return {
+                pane: 'pane_Winter_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,207,45,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Winter_1');
+        map.getPane('pane_Winter_1').style.zIndex = 401;
+        map.getPane('pane_Winter_1').style['mix-blend-mode'] = 'normal';
+        var layer_Winter_1 = new L.geoJson(json_Winter_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Winter_1',
+            layerName: 'layer_Winter_1',
+            pane: 'pane_Winter_1',
+            onEachFeature: pop_Winter_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Winter_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Winter_1);
+        map.addLayer(layer_Winter_1);
+        function pop_Summer_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Field1'] !== null ? Autolinker.link(String(feature.properties['Field1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? Autolinker.link(String(feature.properties['latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? Autolinker.link(String(feature.properties['longitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['obs_date'] !== null ? Autolinker.link(String(feature.properties['obs_date'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['months'] !== null ? Autolinker.link(String(feature.properties['months'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['years'] !== null ? Autolinker.link(String(feature.properties['years'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dates'] !== null ? Autolinker.link(String(feature.properties['Dates'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['seasons'] !== null ? Autolinker.link(String(feature.properties['seasons'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['X'] !== null ? Autolinker.link(String(feature.properties['X'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Y'] !== null ? Autolinker.link(String(feature.properties['Y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['optional'] !== null ? Autolinker.link(String(feature.properties['optional'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Summer_2_0() {
+            return {
+                pane: 'pane_Summer_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(45,225,105,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Summer_2');
+        map.getPane('pane_Summer_2').style.zIndex = 402;
+        map.getPane('pane_Summer_2').style['mix-blend-mode'] = 'normal';
+        var layer_Summer_2 = new L.geoJson(json_Summer_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Summer_2',
+            layerName: 'layer_Summer_2',
+            pane: 'pane_Summer_2',
+            onEachFeature: pop_Summer_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Summer_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Summer_2);
+        map.addLayer(layer_Summer_2);
+        function pop_Spring_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Field1'] !== null ? Autolinker.link(String(feature.properties['Field1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? Autolinker.link(String(feature.properties['latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? Autolinker.link(String(feature.properties['longitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['obs_date'] !== null ? Autolinker.link(String(feature.properties['obs_date'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['months'] !== null ? Autolinker.link(String(feature.properties['months'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['years'] !== null ? Autolinker.link(String(feature.properties['years'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dates'] !== null ? Autolinker.link(String(feature.properties['Dates'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['seasons'] !== null ? Autolinker.link(String(feature.properties['seasons'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['X'] !== null ? Autolinker.link(String(feature.properties['X'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Y'] !== null ? Autolinker.link(String(feature.properties['Y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['optional'] !== null ? Autolinker.link(String(feature.properties['optional'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Spring_3_0() {
+            return {
+                pane: 'pane_Spring_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(37,79,229,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Spring_3');
+        map.getPane('pane_Spring_3').style.zIndex = 403;
+        map.getPane('pane_Spring_3').style['mix-blend-mode'] = 'normal';
+        var layer_Spring_3 = new L.geoJson(json_Spring_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Spring_3',
+            layerName: 'layer_Spring_3',
+            pane: 'pane_Spring_3',
+            onEachFeature: pop_Spring_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Spring_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Spring_3);
+        map.addLayer(layer_Spring_3);
+        function pop_SpermWhaleSeasonalPresenceFall_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Field1'] !== null ? Autolinker.link(String(feature.properties['Field1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(String(feature.properties['Id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? Autolinker.link(String(feature.properties['latitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? Autolinker.link(String(feature.properties['longitude'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['obs_date'] !== null ? Autolinker.link(String(feature.properties['obs_date'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['months'] !== null ? Autolinker.link(String(feature.properties['months'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['years'] !== null ? Autolinker.link(String(feature.properties['years'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dates'] !== null ? Autolinker.link(String(feature.properties['Dates'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['seasons'] !== null ? Autolinker.link(String(feature.properties['seasons'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['X'] !== null ? Autolinker.link(String(feature.properties['X'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Y'] !== null ? Autolinker.link(String(feature.properties['Y'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['optional'] !== null ? Autolinker.link(String(feature.properties['optional'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SpermWhaleSeasonalPresenceFall_4_0() {
+            return {
+                pane: 'pane_SpermWhaleSeasonalPresenceFall_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SpermWhaleSeasonalPresenceFall_4');
+        map.getPane('pane_SpermWhaleSeasonalPresenceFall_4').style.zIndex = 404;
+        map.getPane('pane_SpermWhaleSeasonalPresenceFall_4').style['mix-blend-mode'] = 'normal';
+        var layer_SpermWhaleSeasonalPresenceFall_4 = new L.geoJson(json_SpermWhaleSeasonalPresenceFall_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SpermWhaleSeasonalPresenceFall_4',
+            layerName: 'layer_SpermWhaleSeasonalPresenceFall_4',
+            pane: 'pane_SpermWhaleSeasonalPresenceFall_4',
+            onEachFeature: pop_SpermWhaleSeasonalPresenceFall_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SpermWhaleSeasonalPresenceFall_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SpermWhaleSeasonalPresenceFall_4);
+        map.addLayer(layer_SpermWhaleSeasonalPresenceFall_4);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/SpermWhaleSeasonalPresenceFall_4.png" /> Sperm Whale Seasonal Presence Fall': layer_SpermWhaleSeasonalPresenceFall_4,'<img src="legend/Spring_3.png" /> Spring': layer_Spring_3,'<img src="legend/Summer_2.png" /> Summer': layer_Summer_2,'<img src="legend/Winter_1.png" /> Winter': layer_Winter_1,"ESRI Ocean Base Map": layer_ESRIOceanBaseMap_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
